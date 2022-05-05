@@ -1,13 +1,16 @@
-import org.junit.*;
-import static org.junit.Assert.*;
-import org.sql2o.*;
+import org.junit.Test;
+
 import java.sql.Timestamp;
-import java.util.Date;
 import java.text.DateFormat;
+import java.util.Date;
+
+import static junit.framework.TestCase.assertFalse;
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 public class WaterMonsterTest {
 
-  @Rule
   public DatabaseRule database = new DatabaseRule();
 
   @Test
@@ -160,7 +163,7 @@ public class WaterMonsterTest {
     assertTrue(testWaterMonster.getFoodLevel() <= WaterMonster.MAX_FOOD_LEVEL);
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void feed_throwsExceptionIfFoodLevelIsAtMaxValue(){
     WaterMonster testWaterMonster = new WaterMonster("Bubbles", 1);
     for(int i = WaterMonster.MIN_ALL_LEVELS; i <= (WaterMonster.MAX_FOOD_LEVEL); i++){
@@ -168,7 +171,7 @@ public class WaterMonsterTest {
     }
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void play_throwsExceptionIfPlayLevelIsAtMaxValue(){
     WaterMonster testWaterMonster = new WaterMonster("Bubbles", 1);
     for(int i = WaterMonster.MIN_ALL_LEVELS; i <= (WaterMonster.MAX_PLAY_LEVEL); i++){
@@ -187,7 +190,7 @@ public class WaterMonsterTest {
     assertTrue(testWaterMonster.getPlayLevel() <= WaterMonster.MAX_PLAY_LEVEL);
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void sleep_throwsExceptionIfSleepLevelIsAtMaxValue(){
     WaterMonster testWaterMonster = new WaterMonster("Bubbles", 1);
     for(int i = WaterMonster.MIN_ALL_LEVELS; i <= (WaterMonster.MAX_SLEEP_LEVEL); i++){
@@ -289,7 +292,7 @@ public class WaterMonsterTest {
     assertTrue(testWaterMonster.getWaterLevel() > (WaterMonster.MAX_WATER_LEVEL / 2));
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void kindling_throwsExceptionIfWaterLevelIsAtMaxValue(){
     WaterMonster testWaterMonster = new WaterMonster("Drippy", 1);
     for(int i = WaterMonster.MIN_ALL_LEVELS; i <= (WaterMonster.MAX_WATER_LEVEL); i++){
@@ -312,6 +315,6 @@ public class WaterMonsterTest {
     WaterMonster testWaterMonster = new WaterMonster("Bubbles", 1);
     testWaterMonster.save();
     testWaterMonster.delete();
-    assertEquals(null, WaterMonster.find(testWaterMonster.getId()));
+    assertNull(WaterMonster.find(testWaterMonster.getId()));
   }
 }

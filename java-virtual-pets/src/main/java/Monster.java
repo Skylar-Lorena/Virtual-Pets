@@ -1,6 +1,5 @@
-import org.sql2o.*;
-import java.util.ArrayList;
-import java.util.List;
+import org.sql2o.Connection;
+
 import java.sql.Timestamp;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -149,7 +148,7 @@ public abstract class Monster {
     TimerTask timerTask = new TimerTask(){
       @Override
       public void run() {
-        if (currentMonster.isAlive() == false){
+        if (!currentMonster.isAlive()){
           cancel();
         }
         depleteLevels();

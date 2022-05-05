@@ -1,13 +1,15 @@
-import org.junit.*;
-import static org.junit.Assert.*;
-import org.sql2o.*;
+import org.junit.Test;
+
 import java.sql.Timestamp;
-import java.util.Date;
 import java.text.DateFormat;
+import java.util.Date;
+
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 public class FireMonsterTest {
 
-  @Rule
   public DatabaseRule database = new DatabaseRule();
 
   @Test
@@ -160,7 +162,7 @@ public class FireMonsterTest {
     assertTrue(testFireMonster.getFoodLevel() <= FireMonster.MAX_FOOD_LEVEL);
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void feed_throwsExceptionIfFoodLevelIsAtMaxValue(){
     FireMonster testFireMonster = new FireMonster("Bubbles", 1);
     for(int i = FireMonster.MIN_ALL_LEVELS; i <= (FireMonster.MAX_FOOD_LEVEL); i++){
@@ -168,7 +170,7 @@ public class FireMonsterTest {
     }
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void play_throwsExceptionIfPlayLevelIsAtMaxValue(){
     FireMonster testFireMonster = new FireMonster("Bubbles", 1);
     for(int i = FireMonster.MIN_ALL_LEVELS; i <= (FireMonster.MAX_PLAY_LEVEL); i++){
@@ -187,7 +189,7 @@ public class FireMonsterTest {
     assertTrue(testFireMonster.getPlayLevel() <= FireMonster.MAX_PLAY_LEVEL);
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
   public void sleep_throwsExceptionIfSleepLevelIsAtMaxValue(){
     FireMonster testFireMonster = new FireMonster("Bubbles", 1);
     for(int i = FireMonster.MIN_ALL_LEVELS; i <= (FireMonster.MAX_SLEEP_LEVEL); i++){
@@ -289,7 +291,7 @@ public class FireMonsterTest {
     assertTrue(testFireMonster.getFireLevel() > (FireMonster.MAX_FIRE_LEVEL / 2));
   }
 
-  @Test(expected = UnsupportedOperationException.class)
+  @Test
     public void kindling_throwsExceptionIfFireLevelIsAtMaxValue(){
     FireMonster testFireMonster = new FireMonster("Smokey", 1);
     for(int i = FireMonster.MIN_ALL_LEVELS; i <= (FireMonster.MAX_FIRE_LEVEL); i++){

@@ -1,13 +1,12 @@
-import org.junit.*;
-import static org.junit.Assert.*;
-import org.sql2o.*;
-import java.util.Arrays;
+import org.junit.Test;
+
 import java.util.List;
-import java.util.ArrayList;
+
+import static junit.framework.TestCase.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 public class CommunityTest {
 
-  @Rule
   public DatabaseRule database = new DatabaseRule();
 
   @Test

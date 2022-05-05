@@ -1,6 +1,8 @@
 import org.junit.rules.ExternalResource;
 import org.sql2o.*;
 
+import java.sql.SQLException;
+
 public class DatabaseRule extends ExternalResource {
 
   @Override
@@ -11,6 +13,8 @@ public class DatabaseRule extends ExternalResource {
   @Override
   protected void after() {
     try(Connection con = DB.sql2o.open()) {
+        con.getJdbcConnection().setAutoCommit(false);
+        con.commit();
       String deletePersonsQuery = "DELETE FROM persons *;";
       String deleteMonstersQuery = "DELETE FROM monsters *;";
       String deleteCommunitiesQuery = "DELETE FROM communities *;";
@@ -19,6 +23,8 @@ public class DatabaseRule extends ExternalResource {
       con.createQuery(deleteMonstersQuery).executeUpdate();
       con.createQuery(deleteCommunitiesQuery).executeUpdate();
       con.createQuery(deleteJoinsQuery).executeUpdate();
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
     }
   }
 

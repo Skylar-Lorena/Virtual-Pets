@@ -1,12 +1,13 @@
-import org.junit.*;
-import static org.junit.Assert.*;
-import org.sql2o.*;
+import org.junit.Test;
+
 import java.util.Arrays;
 import java.util.List;
 
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertTrue;
+
 public class PersonTest {
 
-  @Rule
   public DatabaseRule database = new DatabaseRule();
 
   @Test
