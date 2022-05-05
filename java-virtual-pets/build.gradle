@@ -1,0 +1,18 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+archivesBaseName = "virtual-pets"
+version = '1.0'
+mainClassName = "App"
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  testImplementation group: 'junit', name: 'junit', version: '4+'
+  implementation 'com.sparkjava:spark-core:2.9.3'
+  implementation 'org.slf4j:slf4j-simple:1.7.36'
+  implementation group: 'org.sql2o', name: 'sql2o', version: '1.5.4'
+  implementation group: 'org.postgresql', name: 'postgresql', version: "9.4-1201-jdbc41"
+}
